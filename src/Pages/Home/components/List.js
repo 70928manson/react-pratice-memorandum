@@ -1,15 +1,28 @@
-import Item from './Item'; 
+import Item from "./Item";
 
-const arr = [1, 2, 3];
-
-//array for many item
-const List = () => {
-    return <div className="list">
-        {
-            arr.map(item => <div>{item}</div>)
-        }
-        <Item />
-    </div>;
-}
+const List = ({ listData, deleteData }) => {
+  //listData來自Home prop過來的陣列
+  return (
+    <div className="list">
+      {
+        //key不能用index，會影響效能 -> 項目刪除會導致順序重排
+        listData.map((item) => {
+          const { text, date, time, id } = item;
+          //左邊text為item裡的變數
+          return (
+            <Item
+              key={id}
+              id={id}
+              text={text}
+              date={date}
+              time={time}
+              deleteData={deleteData}
+            />
+          );
+        })
+      }
+    </div>
+  );
+};
 
 export default List;
