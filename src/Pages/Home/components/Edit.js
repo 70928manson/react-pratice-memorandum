@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { v4 } from "uuid";
 
-const Edit = ({ add }) => {
+const Edit = ({ add, submittingStatus }) => {
   //text input初始值: 空字串
   const [text, setText] = useState("");
   function textChange(e) {
@@ -22,16 +22,17 @@ const Edit = ({ add }) => {
   console.log(text, date, time);
 
   function addItem() {
+    submittingStatus.current = true;
     add(function (prevData) {
       //搭配解構
       return [
-        ...prevData,
         {
           id: v4(), //uuid 生成獨一無二的id
           text,
           date,
           time,
         },
+        ...prevData,
       ];
     });
   }

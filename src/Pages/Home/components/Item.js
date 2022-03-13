@@ -1,10 +1,11 @@
 //從list prop傳出 text date time資料
-const Item = ({ id, text, date, time, deleteData }) => {
+const Item = ({ id, text, date, time, deleteData, submittingStatus }) => {
 
   function deleteItem() {
-      deleteData(function(prev) {
-          return prev.filter(item => item.id !== id)
-      })
+    submittingStatus.current = true;
+    deleteData(function(prev) {
+        return prev.filter(item => item.id !== id)
+    })
   }
 
   return (

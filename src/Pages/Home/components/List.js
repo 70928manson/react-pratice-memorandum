@@ -1,6 +1,6 @@
 import Item from "./Item";
 
-const List = ({ listData, deleteData }) => {
+const List = ({ listData, deleteData, submittingStatus }) => {
   //listData來自Home prop過來的陣列
   return (
     <div className="list">
@@ -17,6 +17,7 @@ const List = ({ listData, deleteData }) => {
               date={date}
               time={time}
               deleteData={deleteData}
+              submittingStatus={submittingStatus}
             />
           );
         })
